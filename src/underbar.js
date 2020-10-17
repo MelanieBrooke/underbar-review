@@ -117,10 +117,33 @@
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
+    var filtered = [];
+
+    for (var i = 0; i < collection.length; i++) {
+      if (!test(collection[i])) {
+        filtered.push(collection[i]);
+      }
+    }
+    return filtered;
   };
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
+    if (!isSorted) {
+      return [... new Set(array)];
+    } else {
+      //if sorted, run the array through the iterator, and then push unique results to the return var
+      var uniqueResults = [];
+      var iterated = [];
+      for (var i = 0; i < array.length; i++) {
+        var temp = iterator(array[i]);
+        if (iterated.indexOf(temp) === -1) {
+          iterated.push(temp);
+          uniqueResults.push(array[i]);
+        }
+      }
+      return uniqueResults;
+    }
   };
 
 
