@@ -200,13 +200,7 @@
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
     // If no accumulator first index is the accumulator
-    var copy;
-
-    if (Array.isArray(collection)) {
-      copy = [ ...collection];
-    } else {
-      copy = {...collection};
-    }
+    var copy = JSON.parse(JSON.stringify(collection));
 
     if (accumulator === undefined) {
       accumulator = collection[0];
