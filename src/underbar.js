@@ -361,7 +361,7 @@
   _.delay = function(func, wait) {
     var args = [...arguments].slice(2);
     setTimeout(function() {
-      //func(...args);
+      //func(...args); // This works too. Want to remember this as a method as well.
       func.apply(null, args);
     }, wait);
   };
@@ -378,8 +378,18 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
-  };
 
+    var arrCopy = [...array];
+    var resultArr = [];
+    var max = arrCopy.length;
+    while (max > 0) {
+      var random = Math.floor(Math.random() * Math.floor(max));
+      resultArr.push(arrCopy[random]);
+      arrCopy.splice(random, 1);
+      max = arrCopy.length;
+    }
+    return resultArr;
+  };
 
   /**
    * ADVANCED
