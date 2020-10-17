@@ -116,11 +116,12 @@
     // copying code in and modifying it
     var filtered = [];
 
-    for (var i = 0; i < collection.length; i++) {
-      if (!test(collection[i])) {
-        filtered.push(collection[i]);
+    _.each(collection, function(item) {
+      if (!test(item)) {
+        filtered.push(item);
       }
-    }
+    });
+
     return filtered;
   };
 
