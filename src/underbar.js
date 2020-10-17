@@ -200,13 +200,20 @@
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
     // If no accumulator first index is the accumulator
-    var copy = [... collection];
+    var copy;
+
+    if (Array.isArray(collection)) {
+      copy = [ ...collection];
+    } else {
+      copy = {...collection};
+    }
+
     if (accumulator === undefined) {
       accumulator = collection[0];
       copy = collection.slice(1);
     }
 
-    _.each(copy, function(item, key) {
+    _.each(copy, function(item) {
       accumulator = iterator(accumulator, item);
     });
 
