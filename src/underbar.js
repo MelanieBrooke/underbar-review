@@ -98,18 +98,15 @@
 
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, test) {
-    // declare new result array
+    // Declare new result array
     var filtered = [];
-    // Use _.each to go through the collections and run the test
-    // _.each(collection, function(item, index) {
 
-    // })
-
-    for (var i = 0; i < collection.length; i++) {
-      if (test(collection[i])) {
-        filtered.push(collection[i]);
+    _.each(collection, function(item) {
+      if (test(item)) {
+        filtered.push(item);
       }
-    }
+    });
+
     return filtered;
   };
 
